@@ -38,10 +38,11 @@ const siteName = 'AlgoDrift';
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Move Google Fonts to preload for faster rendering -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;700&display=swap" onload="this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;700&display=swap" />
+    </noscript>
     <meta name="generator" content={Astro.generator} />
 
     <SEO
@@ -94,6 +95,6 @@ const siteName = 'AlgoDrift';
       <slot />
     </main>
     <Footer />
-    <script data-goatcounter="https://algodrift.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script is:inline data-goatcounter="https://algodrift.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 </html>

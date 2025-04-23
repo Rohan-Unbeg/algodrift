@@ -21,9 +21,11 @@ const isRemote = imageUrl.startsWith('http://') || imageUrl.startsWith('https://
 // Smart srcset for Pexels, Unsplash, or fallback
 function getSrcSet(url: string) {
   if (url.includes('pexels.com')) {
-    return `${url}?auto=compress&w=400 400w, ${url}?auto=compress&w=800 800w, ${url}?auto=compress&w=1200 1200w`;
+    // Aggressive compression for Pexels
+    return `${url}?auto=compress&w=320&q=30 320w, ${url}?auto=compress&w=480&q=30 480w, ${url}?auto=compress&w=800&q=30 800w`;
   } else if (url.includes('unsplash.com')) {
-    return `${url}?auto=format&q=60&w=400 400w, ${url}?auto=format&q=60&w=800 800w, ${url}?auto=format&q=60&w=1200 1200w`;
+    // Aggressive compression for Unsplash
+    return `${url}?auto=format&q=30&w=320 320w, ${url}?auto=format&q=30&w=480 480w, ${url}?auto=format&q=30&w=800 800w`;
   } else {
     return undefined;
   }

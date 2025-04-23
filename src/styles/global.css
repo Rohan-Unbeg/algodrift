@@ -56,8 +56,8 @@
     @apply inline-flex items-center justify-center px-5 py-2.5 text-base font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
-  .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500 dark:bg-primary-700 dark:hover:bg-primary-600;
+  .btn-primary, .btn-primary:focus {
+    @apply text-white bg-primary-600 hover:bg-primary-700 focus:bg-primary-700 border-none shadow font-medium;
   }
 
   .btn-secondary {
@@ -82,6 +82,26 @@
   pre {
     @apply p-4 rounded-lg overflow-x-auto text-sm;
   }
+}
+
+/* Remove global underline for all links */
+/* a, .prose a, .text-primary-600, .dark\:text-primary-400 {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+} */
+
+/* Remove all forced underlines (revert to original) */
+/* .prose a, .btn, .btn-primary, .btn-secondary {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+} */
+
+/* Keep improved color contrast for .text-primary-600 and .dark:text-primary-400 */
+.text-primary-600 {
+  color: #174ea6 !important;
+}
+.dark\:text-primary-400 {
+  color: #8ab4f8 !important;
 }
 
 /* Animation utilities */
