@@ -4,6 +4,7 @@ import BlogPostCard from '@components/BlogPostCard.astro';
 import Pagination from '@components/Pagination.astro';
 import { getCollection } from 'astro:content';
 import SEOSchema from '@components/SEOSchema.astro';
+import type { CollectionEntry } from 'astro:content';
 
 // Pagination setup
 export const POSTS_PER_PAGE = 9;
@@ -26,7 +27,7 @@ export async function getStaticPaths({ paginate }: { paginate: (data: any[], opt
 interface BlogPage {
   currentPage: number;
   lastPage: number;
-  data: Array<{ id: string; slug: string; data: { title: string; pubDate: Date; [key: string]: any } }>;
+  data: CollectionEntry<'blog'>[];
 }
 
 // Get page from props
@@ -35,7 +36,7 @@ const currentPage = page.currentPage || 1; // Fallback to 1
 const currentPosts = page.data;
 
 // SEO metadata
-const title = `Blog - Page ${currentPage} | Tech Insight`;
+const title = `AlgoDrift | Blog - Page ${currentPage}`;
 const description = 'Explore our latest articles on tech, AI, development tools, and programming tutorials.';
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 const canonical = new URL(`/blog${currentPage > 1 ? `/${currentPage}` : ''}`, Astro.site).toString();
@@ -46,7 +47,7 @@ const canonical = new URL(`/blog${currentPage > 1 ? `/${currentPage}` : ''}`, As
   
   <div class="container py-12 md:py-16">
     <header class="mb-12 md:mb-16 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Tech Insight Blog</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">AlgoDrift Blog</h1>
       <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
         Insights, tutorials, and news about technology, AI, development tools, and programming.
       </p>

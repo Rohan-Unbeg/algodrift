@@ -14,7 +14,7 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "types": ["astro", "node"],
+    "types": ["astro/client", "astro", "node"],
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true
@@ -27,7 +27,6 @@
   "exclude": [
     "dist",
     "node_modules",
-    ".astro",
-    "**/*.d.ts"
+    ".astro"
   ]
 }

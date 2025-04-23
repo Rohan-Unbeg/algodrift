@@ -5,7 +5,7 @@ pubDate: 2025-04-23
 heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1350&q=80"
 categories: ["Programming Languages", "Developer Tools"]
 tags: ["Rust", "TypeScript", "dev stacks", "coding"]
-featured: false
+featured: true
 ---
 
 # Why Rust and TypeScript Are Dominating 2025 Dev Stacks

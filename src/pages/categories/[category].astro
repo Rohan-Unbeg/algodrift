@@ -52,7 +52,7 @@ export async function getStaticPaths() {
 const { category, posts } = Astro.props as { category: string; posts: BlogPost[] };
 
 // SEO metadata
-const title = `${category} Articles | Tech Insight Blog`;
+const title = `${category} Articles | AlgoDrift Blog`;
 const description = `Browse our collection of articles about ${category.toLowerCase()}.`;
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 

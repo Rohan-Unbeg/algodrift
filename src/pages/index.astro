@@ -5,19 +5,20 @@ import BlogPostCard from '../components/BlogPostCard.astro';
 import CategoryCloud from '../components/CategoryCloud.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 // Get latest blog posts (excluding featured ones)
-const allPosts = await getCollection('blog', ({ data }) => {
+const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog', ({ data }: { data: CollectionEntry<'blog'>['data'] }) => {
   return !data.draft;
 });
 
 // Sort by publication date (newest first)
 const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
 // Separate featured from regular posts
-const regularPosts = sortedPosts.filter(post => !post.data.featured).slice(0, 6);
+const regularPosts: CollectionEntry<'blog'>[] = sortedPosts.filter(post => !post.data.featured).slice(0, 6);
 ---
 
 <Layout>

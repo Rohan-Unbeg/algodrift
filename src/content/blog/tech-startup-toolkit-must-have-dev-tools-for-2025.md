@@ -5,7 +5,7 @@ pubDate: 2025-04-23
 heroImage: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
 categories: ["Developer Tools", "Startups"]
 tags: ["startup dev tools", "MVP development", "productivity", "coding"]
-featured: false
+featured: true
 ---
 
 # Tech Startup Toolkit: Must-Have Dev Tools for 2025

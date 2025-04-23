@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -8,7 +9,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://rohanunbeg.com',
+  site: 'https://algodrift.tech',
   integrations: [
     mdx({
       rehypePlugins: [

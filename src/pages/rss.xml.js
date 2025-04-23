@@ -7,7 +7,7 @@ export async function GET(context) {
   });
   
   return rss({
-    title: 'Tech Insight Blog',
+    title: 'AlgoDrift Blog',
     description: 'Stay updated with the latest in technology, AI, development tools, and programming tutorials.',
     site: context.site,
     items: blog.map((post) => ({

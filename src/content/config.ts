@@ -8,7 +8,7 @@ const blogCollection = defineCollection({
     pubDate: z.date(),
     updatedDate: z.date().optional(),
     heroImage: z.string().optional(),
-    author: z.string().default('Tech Insight Team'),
+    author: z.string().default('AlgoDrift Team'),
     categories: z.array(z.string()).default(['Technology']),
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),

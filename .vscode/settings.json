@@ -7,5 +7,8 @@
     },
     "files.associations": {
       "*.astro": "astro"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
     }
   }

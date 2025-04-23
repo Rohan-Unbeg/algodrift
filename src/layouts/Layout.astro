@@ -13,7 +13,7 @@ interface Props {
 }
 
 const {
-  title = 'Rohan Unbeg',
+  title = 'AlgoDrift',
   description = 'Stay updated with the latest in technology, AI, development tools, and programming tutorials.',
   image = '/images/social-card.png',
   article = false,
@@ -23,7 +23,7 @@ const {
 // Ensure title is a safe string
 const safeTitle = String(title);
 const ogType = article ? 'article' : 'website';
-const siteName = 'Rohan Unbeg';
+const siteName = 'AlgoDrift';
 
 ---
 
@@ -34,7 +34,7 @@ const siteName = 'Rohan Unbeg';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Fallback .ico favicon -->
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,5 +94,6 @@ const siteName = 'Rohan Unbeg';
       <slot />
     </main>
     <Footer />
+    <script data-goatcounter="https://algodrift.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 </html>

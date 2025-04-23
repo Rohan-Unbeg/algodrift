@@ -1,5 +1,4 @@
 ---
-import { SEO } from 'astro-seo';
 import type { WithContext, Article, WebSite, BreadcrumbList } from 'schema-dts';
 
 interface Props {
@@ -23,9 +22,9 @@ const { type, article, breadcrumbs, url } = Astro.props;
 const websiteSchema: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Rohan Unbeg',
+  name: 'AlgoDrift',
   description: 'Stay updated with the latest in technology, AI, development tools, and programming tutorials.',
-  url: 'https://rohanunbeg.com',
+  url: 'https://algodrift.tech',
 };
 
 // Article schema (for blog posts)
@@ -45,10 +44,10 @@ if (type === 'article' && article) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Rohan Unbeg',
+      name: 'AlgoDrift',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://rohanunbeg.com/logo.png',
+        url: 'https://algodrift.tech/logo.png',
       },
     },
     mainEntityOfPage: {
@@ -80,7 +79,6 @@ const schemas = [
   ...(breadcrumbSchema ? [breadcrumbSchema] : []),
 ];
 ---
-
 <Fragment>
   {schemas.map(schema => (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
