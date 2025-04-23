@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeaturedPosts from '../components/FeaturedPosts.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+import CategoryCloud from '../components/CategoryCloud.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import { getCollection } from 'astro:content';
+
+// Get latest blog posts (excluding featured ones)
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by publication date (newest first)
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+// Separate featured from regular posts
+const regularPosts = sortedPosts.filter(post => !post.data.featured).slice(0, 6);
+---
+
+<Layout>
+  <!-- Hero section -->
+  <section class="py-12 sm:py-16 lg:py-20 overflow-hidden bg-gradient-to-r from-primary-100 via-white to-white dark:from-primary-900/30 dark:via-gray-900 dark:to-gray-900">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+            <span class="text-primary-600 dark:text-primary-400">Insights</span> into Tech, AI, & Development
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 md:mb-10">
+            Cutting-edge tutorials, tools, and trends for developers and tech enthusiasts.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/blog" class="btn btn-primary">
+              Explore Articles
+            </a>
+            <a href="/categories" class="btn btn-ghost">
+              Browse Categories
+            </a>
+          </div>
+        </div>
+        <div class="lg:flex justify-end slide-up hidden lg:block">
+          <img 
+            src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+            alt="Developer typing code on computer" 
+            class="rounded-xl shadow-lg max-w-full w-full md:max-w-lg" 
+            width="600" 
+            height="400"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured posts -->
+  <FeaturedPosts />
+  
+  <!-- Latest posts -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">Latest Articles</h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Fresh content to keep you updated with the tech world.
+          </p>
+        </div>
+        <a href="/blog" class="btn btn-ghost">
+          View All Articles
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {regularPosts.map(post => (
+          <BlogPostCard post={post} />
+        ))}
+      </div>
+      
+      <!-- Newsletter and categories -->
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <NewsletterSignup />
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8">
+          <CategoryCloud />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

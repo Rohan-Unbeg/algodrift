@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import SEOSchema from '../../components/SEOSchema.astro';
+
+// Pagination setup
+export const POSTS_PER_PAGE = 9;
+
+// Get all blog posts
+type BlogPost = CollectionEntry<'blog'>;
+const posts: BlogPost[] = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => {
+  return !data.draft;
+});
+
+// Sort by publication date (newest first)
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// Get current page posts
+const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+const currentPage = 1;
+const currentPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
+
+// SEO metadata
+const title = 'Blog | Tech Insight';
+const description = 'Explore our latest articles on tech, AI, development tools, and programming tutorials.';
+const url = typeof Astro !== 'undefined' && Astro.url && Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : '';
+
+---
+
+<Layout title={title} description={description}>
+  <SEOSchema type="website" url={url} />
+  
+  <div class="container py-12 md:py-16">
+    <header class="mb-12 md:mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">AlgoDrift Blog</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Insights, tutorials, and news about technology, AI, development tools, and programming.
+      </p>
+    </header>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentPosts.map((post, index) => (
+        <BlogPostCard post={post} featured={index === 0 && currentPage === 1} />
+      ))}
+    </div>
+    
+    <Pagination 
+      currentPage={currentPage} 
+      totalPages={totalPages} 
+      baseUrl="/blog" 
+    />
+  </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPostCard from './BlogPostCard.astro';
+
+// Get all featured blog posts
+const posts = await getCollection('blog', ({ data }) => {
+  return data.featured && !data.draft;
+});
+
+// Sort by publication date (newest first)
+const featuredPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()).slice(0, 3);
+---
+
+{featuredPosts.length > 0 && (
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-gray-900 dark:to-gray-900 py-16 md:py-24">
+    <div class="container">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Articles</h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Our most insightful and valuable content, hand-picked by our editors.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredPosts.map((post, index) => (
+          <BlogPostCard post={post} featured={index === 0} />
+        ))}
+      </div>
+    </div>
+  </section>
+)}

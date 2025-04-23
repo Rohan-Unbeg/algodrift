@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SEOSchema from '../../components/SEOSchema.astro';
+
+// Get all categories from blog posts
+const posts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// Count posts per category
+const categoryCounts = posts.reduce((acc, post) => {
+  post.data.categories.forEach(category => {
+    acc[category] = (acc[category] || 0) + 1;
+  });
+  return acc;
+}, {} as Record<string, number>);
+
+// Convert to array and sort by count (descending)
+const categories = Object.entries(categoryCounts)
+  .map(([name, count]) => ({ name, count, slug: name.toLowerCase() }))
+  .sort((a, b) => b.count - a.count);
+
+// SEO metadata
+const title = 'Categories | Tech Insight Blog';
+const description = 'Browse all article categories on Tech Insight Blog.';
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+  <SEOSchema type="website" url={url} />
+  
+  <div class="container py-12 md:py-16">
+    <header class="text-center mb-12 md:mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Categories</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Browse articles by topic and find the content that interests you most.
+      </p>
+    </header>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map(category => (
+        <a 
+          href={`/categories/${category.slug}`}
+          class="group p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h2 class="text-2xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+            {category.name}
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            {category.count} article{category.count !== 1 ? 's' : ''}
+          </p>
+          <span class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium">
+            View articles
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

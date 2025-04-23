@@ -1,0 +1,67 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+import Pagination from '@components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import SEOSchema from '@components/SEOSchema.astro';
+
+// Pagination setup
+export const POSTS_PER_PAGE = 9;
+
+// Generate static paths for all pages
+export async function getStaticPaths({ paginate }: { paginate: (data: any[], options: { pageSize: number }) => any }) {
+  const posts = await getCollection('blog', ({ data }: { data: { draft?: boolean; pubDate?: Date } }) => {
+    return !data.draft;
+  });
+  
+  // Sort by publication date (newest first)
+  const sortedPosts = posts.sort(
+    (a: { data: { pubDate: Date } }, b: { data: { pubDate: Date } }) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+  
+  return paginate(sortedPosts, { pageSize: POSTS_PER_PAGE });
+}
+
+// Type definitions for Astro.props.page
+interface BlogPage {
+  currentPage: number;
+  lastPage: number;
+  data: Array<{ id: string; slug: string; data: { title: string; pubDate: Date; [key: string]: any } }>;
+}
+
+// Get page from props
+const { page } = Astro.props as { page: BlogPage };
+const currentPage = page.currentPage || 1; // Fallback to 1
+const currentPosts = page.data;
+
+// SEO metadata
+const title = `Blog - Page ${currentPage} | Tech Insight`;
+const description = 'Explore our latest articles on tech, AI, development tools, and programming tutorials.';
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(`/blog${currentPage > 1 ? `/${currentPage}` : ''}`, Astro.site).toString();
+---
+
+<Layout title={title} description={description} canonicalURL={canonical}>
+  <SEOSchema type="website" url={url} />
+  
+  <div class="container py-12 md:py-16">
+    <header class="mb-12 md:mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Tech Insight Blog</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Insights, tutorials, and news about technology, AI, development tools, and programming.
+      </p>
+    </header>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {currentPosts.map(post => (
+        <BlogPostCard post={post} />
+      ))}
+    </div>
+    
+    <Pagination 
+      currentPage={currentPage} 
+      totalPages={page.lastPage} 
+      baseUrl="/blog" 
+    />
+  </div>
+</Layout>
