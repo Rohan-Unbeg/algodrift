@@ -1,0 +1,238 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SEOSchema from "../components/SEOSchema.astro";
+
+// SEO metadata
+const title = "About | AlgoDrift";
+const description =
+  "Learn more about AlgoDrift, your premier destination for cutting-edge insights in technology, AI, and software development.";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Breadcrumbs
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "About", url: url },
+];
+---
+
+<Layout title={title} description={description}>
+  <SEOSchema type="website" url={url} breadcrumbs={breadcrumbs} />
+
+  <!-- Hero Section -->
+  <section
+    class="py-12 md:py-16 bg-gradient-to-b from-primary-50 to-white dark:from-gray-900 dark:to-gray-900"
+  >
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">About AlgoDrift</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          Navigating the future of technology through expert insights, practical
+          tutorials, and cutting-edge developments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            At AlgoDrift, we're dedicated to demystifying complex technology
+            concepts and making them accessible to everyone. Our mission is to
+            provide high-quality, actionable content that helps developers, tech
+            enthusiasts, and businesses navigate the rapidly evolving digital
+            landscape.
+          </p>
+          <p class="text-lg text-gray-600 dark:text-gray-400">
+            We focus on delivering practical insights, in-depth tutorials, and
+            analysis of emerging trends in software development, artificial
+            intelligence, and digital tools. Our content is carefully curated to
+            help you make informed decisions and enhance your technical
+            expertise.
+          </p>
+        </div>
+        <div class="relative">
+          <img
+            src="https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Programming and technology"
+            class="rounded-xl shadow-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Focus Areas Section -->
+  <section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800/30">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">What We Cover</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Explore our key focus areas where we provide in-depth coverage and
+          expert insights.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm">
+          <img
+            src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="AI and Machine Learning"
+            class="w-full h-48 object-cover rounded-lg mb-6"
+          />
+          <h3 class="text-xl font-bold mb-3">AI & Machine Learning</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Latest developments in AI, practical applications, and impact on
+            various industries.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm">
+          <img
+            src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Development Tools"
+            class="w-full h-48 object-cover rounded-lg mb-6"
+          />
+          <h3 class="text-xl font-bold mb-3">Development Tools</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Reviews and tutorials on the latest tools and technologies that
+            enhance developer productivity.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm">
+          <img
+            src="https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Tech Trends"
+            class="w-full h-48 object-cover rounded-lg mb-6"
+          />
+          <h3 class="text-xl font-bold mb-3">Tech Trends</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Analysis of emerging technologies and their potential impact on the
+            future of development.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+          Our Values
+        </h2>
+
+        <div class="space-y-12">
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Quality Education</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                We believe in providing comprehensive, well-researched content
+                that truly educates and empowers our readers.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Accuracy & Integrity</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                We maintain high standards of accuracy and integrity in our
+                content, ensuring our readers can trust the information we
+                provide.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Innovation Focus</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                We stay at the forefront of technological innovation, bringing
+                you insights into the latest developments and trends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800/30">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+          Have questions or feedback? We'd love to hear from you.
+        </p>
+        <a href="/contact" class="btn btn-primary"> Contact Us </a>
+      </div>
+    </div>
+  </section>
+</Layout>

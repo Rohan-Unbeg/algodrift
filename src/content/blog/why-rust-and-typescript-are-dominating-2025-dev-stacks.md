@@ -8,8 +8,6 @@ tags: ["Rust", "TypeScript", "dev stacks", "coding"]
 featured: true
 ---
 
-# Why Rust and TypeScript Are Dominating 2025 Dev Stacks
-
 A Rust rewrite saved my app from memory leaks, while TypeScript caught bugs before they hit prod. In 2025, 45% of devs use Rust or TypeScript, per [Stack Overflow 2025](https://survey.stackoverflow.co/2025/). This article explores why Rust and TypeScript dominate, highlighting five tools—Rust Analyzer, TypeScript Playground, Deno, Cargo, and ESLint—that power their ecosystems, with use cases and insights.
 
 ## The Rust and TypeScript Surge
