@@ -11,7 +11,7 @@ tags:
   - "budget laptop coding setup"
   - "Linux developer tools 2025"
   - "VS Code lightweight setup"
-featured: false
+featured: true
 ---
 
 In 2025, coding on a budget laptop is a smart move—hardware prices are climbing, remote work is king, and eco-friendly setups save resources. You don’t need a $2,000 machine to crush it as a dev. With lightweight tools and a few tricks, your 4-8GB RAM laptop can code like a champ. Here’s a no-BS guide to a fast, cheap developer environment that’ll make your old laptop feel new.
